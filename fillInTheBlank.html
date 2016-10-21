@@ -1,0 +1,130 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <style>
+            input[type="button"]{
+                display:block;
+                border:none;
+                width:200px;
+                margin:auto auto;
+                background-color: #a3c3ea
+            }
+            input[type=button]:hover
+            {
+                background-color: #3c78d8
+            }
+            
+            input[type="text"]{
+                border-style:none; border-bottom-style:solid;
+                outline:none;
+                font-size:16px
+            }
+        </style>
+        
+        <title>测试网页</title>
+        <meta charset="utf-8">
+            <meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    </head>
+    <body>
+        <!--
+         <span style="background-color:light">An iOS web application—or iOS web app—uses Web 2.0 technologies to deliver a focused solution that looks and behaves like a built-in iOS application.</span>
+         <input type="text" style="width:50px" id="id-test"/>
+         <span>
+         web apps run in Safari on iOS, the unique implementation of Safari that provides full-featured web browsing on iOS-based devices and responds to touch-based gestures.
+         </span>-->
+        <div id="id_html"></div>
+        <input id="clickMe" type="button" value="验证" onclick="check();"/>
+        <div >
+        <audio
+            id="idAudioPlayer"
+            src="x.mp3"
+            preload="auto"
+            controls="controls">
+            
+            <!-- Message to display in case the audio element isn't supported. -->
+            <p>Your browser does not support the audio element.</p>
+        </audio>
+        </div>
+        <a href="javascript:replay();" onkeydown="javascript:replay();">Play</a>
+    </body>
+    
+    <script>
+        var content_text = "An iOS web application—or iOS web app—uses Web 2.0 technologies to deliver a focused solution that looks and behaves like a built-in iOS application. iOS web apps run in Safari on iOS, the unique implementation of Safari that provides full-featured web browsing on iOS-based devices and responds to touch-based gestures.";
+        var array_content_text = content_text.split(" ");
+        var scale = 1-0.618;
+        var count = Math.min(array_content_text.length, Math.max(1, Math.ceil(array_content_text.length * scale)));
+        var array_content_text_hidden = getArrayOfHiddenTextOfContent(count,array_content_text.length);
+        console.log(array_content_text_hidden);
+        var mutableString = "<span>";
+        
+        for (var i = 0; i < array_content_text.length; i++) {
+            if (array_content_text_hidden.indexOf(i) > -1) {
+                mutableString+="</span>";
+                var identifier = identifierWithIndex(i);
+                var input_html = "<input type=\"text\" autocomplete=\"off\" style=\"width:" + getMinWidthOfWord(array_content_text[i].length) + "px\" id=\"" + identifier + "\" />";
+                mutableString += input_html;
+                mutableString += "<span> ";
+            } else {
+                mutableString += array_content_text[i];
+                mutableString += " ";
+            }
+        }
+    mutableString+="</span>";
+    document.getElementById("id_html").innerHTML = mutableString;
+
+    function getMinWidthOfWord(length) {
+        return Math.max(16, 8 * length);
+    }
+    function identifierWithIndex(index) {
+        return "id_"+ index;
+    }
+    function check() {
+        var result = true;
+        var textOfWord = null;
+        var textOfUserInput = null;
+        for (var i = 0; i < array_content_text_hidden.length; i++) {
+            var index = array_content_text_hidden[i];
+            var identifier = identifierWithIndex(index);
+            var element = document.getElementById(identifier);
+            console.log(element.value);
+            textOfWord = array_content_text[index];
+            textOfUserInput = element.value;
+            if (textOfWord != element.value) {
+                result = false;
+                break;
+            }//if
+        }//for
+        if (result) {
+            alert("Rigth");
+        } else {
+            var message = "'" + textOfUserInput + "'" + " should as " + "'" + textOfWord + "'";
+            alert("Wrong!  " + message);
+        }
+        return result;
+    }
+    
+    function getArrayOfHiddenTextOfContent(count, length) {
+        var arrayOfTextOfContent = new Array();
+        while (arrayOfTextOfContent.length < count) {
+            var index = Math.ceil(Math.random() * length);
+            if (arrayOfTextOfContent.indexOf(index) == -1) {
+                arrayOfTextOfContent.push(index);
+            }
+        }
+        console.log(arrayOfTextOfContent);
+        return arrayOfTextOfContent;
+    }
+    function play() {
+        audioPlayer = document.getElementById("idAudioPlayer");
+        audioPlayer.play();
+    }
+    function replay() {
+        audioPlayer = document.getElementById("idAudioPlayer");
+        //alert(audioPlayer);
+        console.log(audioPlayer);
+        //audioPlayer.load();
+        audioPlayer.play();
+    }
+    
+    </script>
+</html>

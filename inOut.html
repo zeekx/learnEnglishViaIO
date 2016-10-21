@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <title>Learnenglishviaio by zeekx</title>
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+<!--    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">-->
+<!--        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>-->
+            <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+            <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+
+  </head>
+
+  <body>
+
+    <div id="display" style="height:495px;width:800px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+      <p>
+      As you can see, once there's enough text in this box, the box will grow scroll bars...
+      that's why we call it a scroll box! You could also place an image into the scroll box.
+    </p>
+    </div>
+
+      <div id="user.input.section">
+          <input id="user.input" type="text" style="width:700px;border: 2px solid #379082" />
+          <input id="user.input.sendButton" style="width:100px" type="button" value="Send" onclick="send()"/>
+      </div>
+
+  </body>
+
+  <script>
+  var content_text = "An iOS web application—or iOS web app—uses Web 2.0;\
+   technologies to deliver a focused solution that;\
+    looks and behaves like a built-in iOS application.;\
+    iOS web apps run in Safari on iOS,;\
+     the unique implementation of Safari that\
+      provides full-featured web browsing on;\
+       iOS-based devices and responds to touch-based gestures.";
+       var index = 0;
+  var array_content_text = content_text.split(";");
+      function send() {
+        var section = document.getElementById("display");
+        var e = section.getElementsByTagName("p");
+
+        var text = document.getElementById("user.input").value;
+        output("right",text,e[0]);
+        if (index < array_content_text.length) {
+          output("left",array_content_text[index],e[0]);
+          index += 2;
+        } else {
+           output("left","Finish!",e[0]);
+        }
+        document.getElementById("user.input").value = "";
+      }
+
+      function init() {
+
+        var section = document.getElementById("display");
+        var e = section.getElementsByTagName("p");
+        for (var i = 0; i < array_content_text.length; i++) {
+          output(i % 2 == 0 ? "right" : "left",array_content_text[i], e[0]);
+      }
+    }
+      function output(textalign,text,textView) {
+        var oldtext = textView.innerHTML;
+        textView.innerHTML = oldtext + "<br/>" + "<span style='float:" + textalign + "'> "+ text + "</span>";
+      }
+  </script>
+</html>
