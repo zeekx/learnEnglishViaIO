@@ -15,14 +15,12 @@
   <body>
 
     <div id="display" style="height:495px;width:800px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto; margin:0 auto">
-      <p>
-      <span style="float:center">LessonX</span>
-    </p>
+      <p style="text-align:center">LessonX</p>
     </div>
 
       <div id="user.input.section" style="width:800px;margin: 0 auto">
-          <input id="user.input" type="text" style="width:700px;border: 2px solid #379082;float:left" />
-          <input id="user.input.sendButton" style="width:100px;float:left;background:#00CCFF" type="button" value="Send" onclick="send()"/>
+          <input id="user.input" type="text" style="width:700px;border: 2px solid #379082;float:left"  onkeydown="handleKeyPress()"/>
+          <input id="user.input.sendButton" style="width:100px;float:left;background:#00CCFF" type="button" value="Send" onclick="send()" />
       </div>
 
   </body>
@@ -62,7 +60,22 @@
     }
       function output(textalign,text,textView) {
         var oldtext = textView.innerHTML;
-        textView.innerHTML = oldtext + "<br/>" + "<span style='float:" + textalign + "'> "+ text + "</span>";
+        var color = null;
+        if (textalign == "left") {
+          color = "white";
+        } else if (true) {
+          color = "lightgray";
+        } else {
+          alert("Color undefine!");
+        }
+        textView.innerHTML = oldtext + "<p style='margin:0;" + "background-color:" + color + ";text-align:" + textalign + ";'>" + text + "</p>";
+      }
+
+      function handleKeyPress(e) {
+        e = e || window.event;
+        if (e.key == 'Enter'|| e.key == 'Return') {
+          send();
+        }
       }
   </script>
 </html>
