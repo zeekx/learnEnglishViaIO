@@ -4,36 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
     <title>Learnenglishviaio by zeekx</title>
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
-<!--    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">-->
-<!--        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>-->
-            <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-            <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-
   </head>
-  
-  <body>
-      
-      <div id="display">
-          <p>Dispaly</p>
-      </div>
-      
-      <div id="user.input.section">
-          <input id="user.input" style="text" width=500px />
-              <input id="user.input.sendButton" type="button" value="Send" onclick="send()"/>
-      </div>
-      
 
+  <body>
+    <p style="text-align:center">Welcome</p>
+    <a href="inout.html">IO</a>
   </body>
-  
-  <script>
-      function send() {
-      var section = document.getElementById("display");
-      var e = section.getElementsByTagName("p");
-      
-      var text = document.getElementById("user.input").value;
-      var oldtext = e[0].innerHTML;
-      e[0].innerHTML = oldtext + "<br/>" + text;
-      }
-  </script>
 </html>
