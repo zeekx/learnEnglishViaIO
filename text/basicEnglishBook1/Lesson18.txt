@@ -1,0 +1,6 @@
+A:Excuse me.Can you tell me the way to the train station, please?
+B:Sure, It's only three blocks down the street.
+A:Is it near post office?
+B:No,It is near fire station.
+A:Oh,I see.Thanks.
+B:You're welcome.

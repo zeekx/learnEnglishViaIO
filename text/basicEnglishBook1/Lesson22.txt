@@ -1,0 +1,6 @@
+A:Hello,Do you want to dance?
+B:No, thanks.
+A:Do you want a drink?
+B:No, thank you.
+A:What do you want?
+B:I just want you to go away.
